@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Undangan Ulang Tahun Romantis - For My Love</title>
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe0f0 0%, #ffd0e6 100%);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Bunga background besar */
+        .flower-assets {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .flower {
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        /* Berbagai jenis bunga SVG */
+        .flower-1 { top: 5%; left: -30px; width: 150px; animation: floatFlower 8s ease-in-out infinite; }
+        .flower-2 { bottom: 10%; right: -40px; width: 180px; animation: floatFlower 10s ease-in-out infinite reverse; }
+        .flower-3 { top: 30%; right: -20px; width: 120px; animation: floatFlower 7s ease-in-out infinite; }
+        .flower-4 { bottom: 20%; left: -25px; width: 140px; animation: floatFlower 9s ease-in-out infinite reverse; }
+        .flower-5 { top: 60%; left: 10%; width: 100px; animation: floatFlower 6s ease-in-out infinite; opacity: 0.25; }
+        .flower-6 { bottom: 5%; left: 20%; width: 110px; animation: floatFlower 11s ease-in-out infinite; }
+        .flower-7 { top: 15%; right: 15%; width: 90px; animation: floatFlower 7.5s ease-in-out infinite reverse; }
+        .flower-8 { bottom: 40%; right: 5%; width: 130px; animation: floatFlower 8.5s ease-in-out infinite; }
+
+        @keyframes floatFlower {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Container utama */
+        .app-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 248, 251, 0.96);
+            backdrop-filter: blur(2px);
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.15);
+        }
+
+        /* Slide Navigation */
+        .slide {
+            display: none;
+            animation: fadeIn 0.6s ease;
+            padding: 30px 24px 80px;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Tombol navigasi slide */
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(255, 240, 245, 0.98);
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(255, 105, 180, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #f5a0c0, #e8789e);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #f7b0cc, #ec88ae);
+        }
+
+        /* Header Slide 1 */
+        .invitation-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .invitation-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #d4628a;
+            letter-spacing: 2px;
+        }
+
+        .birthday-greeting {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .birthday-greeting h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #e8789e, #d4628a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .love-message {
+            text-align: center;
+            color: #b84c70;
+            line-height: 1.8;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255, 230, 240, 0.7);
+            border-radius: 30px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(232, 120, 158, 0.3);
+        }
+
+        /* Album Foto dengan Animasi */
+        .photo-album {
+            margin: 30px 0;
+        }
+
+        .album-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #d4628a;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .photo-card {
+            background: linear-gradient(135deg, #ffe4ef, #ffd6e8);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            aspect-ratio: 1/1;
+            animation: floatPhoto 3s ease-in-out infinite;
+            border: 2px solid rgba(232, 120, 158, 0.3);
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 12px 28px rgba(232, 120, 158, 0.3);
+            border-color: #e8789e;
+        }
+
+        /* Animasi bergerak beda waktu tiap card */
+        .photo-card:nth-child(1) { animation-delay: 0s; }
+        .photo-card:nth-child(2) { animation-delay: 0.2s; }
+        .photo-card:nth-child(3) { animation-delay: 0.4s; }
+        .photo-card:nth-child(4) { animation-delay: 0.6s; }
+        .photo-card:nth-child(5) { animation-delay: 0.8s; }
+        .photo-card:nth-child(6) { animation-delay: 1s; }
+
+        @keyframes floatPhoto {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Musik Control */
+        .music-control {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .music-btn {
+            background: linear-gradient(135deg, #f5a0c0, #e8789e);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(232, 120, 158, 0.4);
+        }
+
+        .music-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(232, 120, 158, 0.5);
+        }
+
+        /* Slide 2 - Pesan Spesial */
+        .special-message-card {
+            background: linear-gradient(135deg, #fff5f8, #ffeef4);
+            border-radius: 40px;
+            padding: 40px 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(232, 120, 158, 0.15);
+            margin-top: 20px;
+            border: 1px solid rgba(232, 120, 158, 0.3);
+            position: relative;
+        }
+
+        .special-message-card i {
+            font-size: 3rem;
+            color: #e8789e;
+            margin-bottom: 20px;
+        }
+
+        .special-message-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #d4628a;
+            margin-bottom: 25px;
+        }
+
+        .special-message-card p {
+            color: #b84c70;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .heart-decoration {
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            color: #e8789e;
+            margin-top: 20px;
+        }
+
+        /* Slide 3 - Album Lengkap */
+        .full-album-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .full-album-item {
+            background: linear-gradient(135deg, #ffe4ef, #ffd6e8);
+            border-radius: 25px;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease;
+            transition: 0.3s;
+            cursor: pointer;
+            border: 2px solid rgba(232, 120, 158, 0.2);
+        }
+
+        .full-album-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(232, 120, 158, 0.3);
+            border-color: #e8789e;
+        }
+
+        .full-album-item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .full-album-caption {
+            padding: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #d4628a;
+            background: white;
+            font-weight: 500;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Indikator slide */
+        .slide-indicator {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #e8789e;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .slide {
+                padding: 20px 16px 80px;
+            }
+            .photo-grid {
+                gap: 10px;
+            }
+            .full-album-grid {
+                gap: 12px;
+            }
+        }
+
+        /* Dekorasi bunga kecil di dalam konten */
+        .small-flower {
+            display: inline-block;
+            font-size: 1.2rem;
+            margin: 0 5px;
+        }
+
+        /* Music Note Styling */
+        #musicNote {
+            background: linear-gradient(135deg, #ffe4f1, #ffd6ea);
+            border: 2px solid #e8789e;
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            text-align: center;
+            color: #d4628a;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            animation: noteSlideIn 0.5s ease;
+        }
+
+        @keyframes noteSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Disabled Next Button */
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed !important;
+            background: linear-gradient(135deg, #d4a5c0, #c8738a) !important;
+        }
+
+        .nav-btn:disabled:hover {
+            transform: none !important;
+        }
+
+        /* Success Note */
+        #musicNote.success {
+            background: linear-gradient(135deg, #d4f1d4, #c8ead4);
+            border-color: #2ecc71;
+            color: #1d8c4a;
+        }
+
+        #musicNote.success i {
+            color: #2ecc71;
+        }
+
+        #musicNote i {
+            font-size: 1.2rem;
+            color: #e8789e;
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <!-- SLIDE 1 - UNDANGAN UTAMA + PREVIEW ALBUM -->
+    <div class="slide active" id="slide1">
+        <div class="invitation-header">
+            <h1>🌸 Birthday Invitation 🌸</h1>
+        </div>
+        <div class="birthday-greeting">
+            <h2>Happy Birthday, Sayangku! 🎂</h2>
+        </div>
+        <div class="love-message">
+            <i class="fas fa-heart" style="color:#e8789e;"></i> 
+            Happy Birdthday Sayang Abang Semoga Panjang Umur dan sehat selalu, semoga semua impianmu tercapai dan semoga kita selalu bersama ya sayang. <br><br>
+             Aku mencintaimu lebih dari kata-kata bisa ungkapkan. ❤️
+             <br><br>
+             With all my love, <br>
+             
+             <br><br>
+            <i class="fas fa-heart" style="color:#e8789e;"></i>
+        </div>
+
+        <!-- Preview Album (animasi bergerak) -->
+        <div class="photo-album">
+            <div class="album-title">
+                <i class="fas fa-heart"></i> <span class="small-flower">🌹</span> Kenangan Manis Kita <span class="small-flower">🌹</span> <i class="fas fa-heart"></i>
+            </div>
+            <div class="photo-grid" id="previewGrid">
+                <div class="photo-card"><img src="1.jpeg" alt="foto1"></div>
+                <div class="photo-card"><img src="2.jpeg" alt="foto2"></div>
+                <div class="photo-card"><img src="3.jpeg" alt="foto3"></div>
+                <div class="photo-card"><img src="4.jpeg" alt="foto4"></div>
+                <div class="photo-card"><img src="5.jpeg" alt="foto5"></div>
+                <div class="photo-card"><img src="6.jpeg" alt="foto6"></div>
+            </div>
+        </div>
+
+        <!-- Musik Control -->
+        <div class="music-control">
+            <button id="musicToggleBtn" class="music-btn">
+                <i id="musicIcon" class="fas fa-music"></i> 
+                <span id="musicText">Putar Musik Romantis</span>
+            </button>
+        </div>
+
+        <!-- Note untuk putar musik -->
+        <div id="musicNote">
+            <i class="fas fa-music"></i>
+            <span>💌 Silakan putar musik terlebih dahulu untuk melanjutkan! 💌</span>
+        </div>
+
+        <div class="slide-indicator">
+            <i class="fas fa-arrow-down"></i> Geser ke bawah untuk pesan spesial & album lengkap <i class="fas fa-arrow-down"></i>
+        </div>
+    </div>
+
+    <!-- SLIDE 2 - PESAN SPESIAL (SLIDE BARU) -->
+    <div class="slide" id="slide2">
+        <div class="special-message-card">
+            <i class="fas fa-envelope-open-text"></i>
+            <h3>💌from Bang Eaan for Jaskia 💌</h3>
+            <p>
+                🌸 <strong>Note:Baca Pakai Perasaaan ya sayang </strong> 🌸<br><br>
+                🌸 <strong>MINE</strong> 🌸<br><br>
+                Selamat Ualang tahun ya sayang ku semoga panjang umur dan sehat selalu
+                Di hari bahagia seng ini Semoga apa yang seng mau terkabulkan di lancaarkan rejeki nya <br><br>
+                🌹 Abang Ga Lupa Kok sama hari bahagia seng ini,salah satu seng ngambek sama abang karna seng pikir abang lupa ya dengan 
+                hari ulang tahun seng hahahah abang ga lupa kok seng abang lagi usahain yang terbaik dan semampu abang seng , abang bingung harus ngerayain nya gimana seng,
+                karna seng udah ngerayain diri seng sendiri lebih dari apa yang abang beri ini, jadi abang takut seng kecewa dengan 
+                apa yang abang beri ni seng semoga seng ga kecewa ya seng cuman ini yang abang bisa seng,
+                Abang berharap bertamambah nya umur seng ini seng bisa lebih baik dari yang sebelum nya semua orang
+                ini menjadi lebih baik setiap tahun nya daan abang berharap untuk kita komunikasi nya semakin lancar agar 
+                tidak ada pertengkaran di antara kita lagi yaa sayang , dan semakin percaya, komitmen, dan semakin sayang sesama kita  ya seng,
+                mungkin kamu orang pertama yang singggah di hidup abang yang nga bisa abang ungkapin dengan kata kata yang selalu bijak dalam mengatasi masalah 
+                walaupun masi ada egois nya seng heheh 😂 tapi abang senang kok sama seng pokok nya abang ga mau seng tu cuek cuek lagiii sama abang
+                🙄 poko nya apapun kalo kita ada masalah kita saling curhat ya seng abang ga tau lagi mau cerita, curhat , kalo nggak sama cewek abang ,
+                POKOK NYA SENGG GA OLEEH CUEK CUEK LAGIII SAMA ABANG  apapun seng yaa ga boleh cuek , diam kita sama sama brisik isi kepala kita seng 
+                kalo seng ada marah sama abang ga boleh cuek dingin lagi sama abang , dan kalo pun seng ada bosan, benci , gaa senang lagi sama abang bilang langsung 
+                ke abang jangan di diamin abang ya seng susah ngelupain buat orang tersayang satu ni semoga kita langgeng terus ya seng hehehe LOVE YOU SAYANG KUUUUU
+                Ini suara hati abang ya senggg <br><br>
+                <br><br>
+                <strong>❤️</strong><br><br>
+                <i>I want to be with you,</i><br>
+                <strong>=Semoga seng Suka Kado dari abang ni yaaa seng Maaf abang belum bisa ngerayain 
+                    ulangtahun seng ini seperti apa yang seng ingin kan ya seng, dan maaf juga abang belum bisa romantis seperti 
+                    cowok cowok di luar sana seng, tapi abang punya cara sendiri buat ngerayaain cewek abang ,Pokok nya jagaaa kado abang ni baik baik 
+                    dan jaga juga website ini baik baik seng jangan sampai hilang yaa seng heheh 😘😘😘 semoga hari hari seng kedepan nya 
+                    senang bersama abang=
+                </strong>
+            </p>
+            <div class="heart-decoration">
+                ♥ 🌸 ♥ 🌸 ♥
+            </div>
+        </div>
+        <div class="slide-indicator">
+            <i class="fas fa-arrow-right"></i> Klik tombol di bawah untuk melihat album lengkap
+        </div>
+    </div>
+
+
+    <!-- Tombol Navigasi Slide -->
+    <div class="nav-buttons">
+        <button class="nav-btn" id="nextBtn">Selanjutnya <i class="fas fa-chevron-right"></i></button>
+    </div>
+</div>
+
+<!-- Audio Background -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="percayalah.mp3" type="audio/mpeg">
+    <!-- Ganti dengan lagu romantis favoritmu -->
+</audio>
+
+<script>
+    // ========== SLIDE NAVIGATION WITH MUSIC REQUIREMENT ==========
+    let currentSlide = 1;
+    const totalSlides = 2;
+    const slides = document.querySelectorAll('.slide');
+    let musicPlayed = false; // Track apakah musik sudah pernah diputar
+
+    function updateMusicStatus() {
+        const musicNote = document.getElementById('musicNote');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        if (musicPlayed) {
+            // Musik sudah diputar - enable next button dan ubah note
+            musicNote.classList.add('success');
+            musicNote.innerHTML = '<i class="fas fa-check-circle"></i> <span>✅ Terima kasih sudah mendengarkan! Sekarang lanjut yuk! 💕</span>';
+            nextBtn.disabled = false;
+        } else {
+            // Musik belum diputar - disable next button
+            musicNote.classList.remove('success');
+            musicNote.innerHTML = '<i class="fas fa-music"></i> <span>💌 Silakan putar musik terlebih dahulu untuk melanjutkan! 💌</span>';
+            nextBtn.disabled = true;
+        }
+    }
+
+    // Init status saat halaman load
+    updateMusicStatus();
+
+    function showSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        document.getElementById(`slide${n}`).classList.add('active');
+        currentSlide = n;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        // Cek apakah musik sudah diputar sebelum bisa melanjutkan
+        if (!musicPlayed) {
+            alert('🎵 Silakan putar musik dulu sebelum melanjutkan! 🎵');
+            return;
+        }
+
+        if (currentSlide < totalSlides) {
+            showSlide(currentSlide + 1);
+        } else {
+            showSlide(1);
+        }
+    });
+
+    // ========== MUSIC ON/OFF ==========
+    const music = document.getElementById('bgMusic');
+    const toggleBtn = document.getElementById('musicToggleBtn');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicText = document.getElementById('musicText');
+    let isPlaying = false;
+
+    toggleBtn.addEventListener('click', () => {
+        if (!isPlaying) {
+            music.play().then(() => {
+                isPlaying = true;
+                musicPlayed = true; // Set flag bahwa musik sudah pernah diputar
+                musicIcon.className = 'fas fa-volume-up';
+                musicText.innerText = 'Matikan Musik';
+                updateMusicStatus(); // Update status untuk enable next button
+            }).catch(err => {
+                alert("🌸 Klik tombol sekali lagi untuk memutar musik 🌸");
+            });
+        } else {
+            music.pause();
+            isPlaying = false;
+            musicIcon.className = 'fas fa-music';
+            musicText.innerText = 'Putar Musik Romantis';
+            // musicPlayed tetap true karena sudah pernah diputar
+        }
+    });
+
+    // ========== FUNGSI PERBESAR FOTO (MODAL) ==========
+    function createModal(imgSrc, caption = 'Kenangan Indah') {
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        modal.style.zIndex = '9999';
+        modal.style.cursor = 'pointer';
+        modal.innerHTML = `
+            <div style="max-width: 90%; max-height: 90%; text-align: center;">
+                <img src="${imgSrc}" style="max-width: 100%; max-height: 80vh; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <p style="color: #f5a0c0; margin-top: 15px; font-size: 1rem;">${caption} 🌸❤️</p>
+                <p style="color: #e8789e; font-size: 0.8rem;">Klik dimana saja untuk menutup</p>
+            </div>
+        `;
+        modal.addEventListener('click', () => modal.remove());
+        document.body.appendChild(modal);
+    }
+
+    // Event listener untuk semua foto di preview grid (slide1)
+    document.querySelectorAll('#previewGrid .photo-card img').forEach(img => {
+        img.parentElement.addEventListener('click', () => {
+            createModal(img.src, 'Momen spesial bersama');
+        });
+    });
+
+    console.log("🌸 Template dengan tema pink & aset bunga siap! 🌸\n✨ Ganti semua placeholder gambar dengan foto asli kalian.\n🎵 Ubah link musik dengan lagu favorit.\n💖 Selamat merayakan cinta!");
+</script>
+</body>
+</html>

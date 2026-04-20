@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Loading - Undangan Ulang Tahun Romantis</title>
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe0f0 0%, #ffd0e6 100%);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating Flowers Background */
+        .flower-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-flower {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.6;
+            animation: floatAroundScreen 20s infinite ease-in-out;
+        }
+
+        .flower-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .flower-2 { top: 20%; right: 8%; animation-delay: 2s; }
+        .flower-3 { bottom: 15%; left: 10%; animation-delay: 4s; }
+        .flower-4 { bottom: 25%; right: 5%; animation-delay: 6s; }
+        .flower-5 { top: 40%; left: 15%; animation-delay: 8s; }
+        .flower-6 { top: 30%; right: 12%; animation-delay: 10s; }
+        .flower-7 { bottom: 40%; left: 50%; animation-delay: 12s; }
+        .flower-8 { top: 60%; right: 25%; animation-delay: 14s; }
+
+        @keyframes floatAroundScreen {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0.4; }
+            25% { transform: translateX(50px) translateY(-50px) rotate(90deg); opacity: 0.7; }
+            50% { transform: translateX(0) translateY(-100px) rotate(180deg); opacity: 0.5; }
+            75% { transform: translateX(-50px) translateY(-50px) rotate(270deg); opacity: 0.7; }
+            100% { transform: translateX(0) translateY(0) rotate(360deg); opacity: 0.4; }
+        }
+
+        /* Loading Container */
+        .loading-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            background: rgba(255, 248, 251, 0.95);
+            padding: 60px 40px;
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(232, 120, 158, 0.3);
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading Title */
+        .loading-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #d4628a;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .loading-subtitle {
+            color: #b84c70;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* Animated Heart Spinner */
+        .heart-loader {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .heart {
+            font-size: 2rem;
+            animation: heartBeat 1.2s ease-in-out infinite;
+        }
+
+        .heart-1 { animation-delay: 0s; }
+        .heart-2 { animation-delay: 0.2s; }
+        .heart-3 { animation-delay: 0.4s; }
+        .heart-4 { animation-delay: 0.6s; }
+        .heart-5 { animation-delay: 0.8s; }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.3) rotate(-5deg); }
+            50% { transform: scale(1.3) rotate(5deg); }
+            75% { transform: scale(1.3) rotate(-5deg); }
+        }
+
+        /* Progress Dots */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e8789e, #d4628a);
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        .dot-1 { animation-delay: 0s; }
+        .dot-2 { animation-delay: 0.3s; }
+        .dot-3 { animation-delay: 0.6s; }
+
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Loading Text */
+        .loading-text {
+            color: #e8789e;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Rotating Flower Icon */
+        .rotating-icon {
+            display: inline-block;
+            font-size: 1.5rem;
+            animation: rotate 3s linear infinite;
+            margin: 0 10px;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating Petals */
+        .floating-petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .petal {
+            position: absolute;
+            pointer-events: none;
+            animation: fallPetal 3s linear infinite;
+        }
+
+        .petal-1 {
+            left: 10%;
+            animation-delay: 0s;
+            font-size: 1.2rem;
+        }
+
+        .petal-2 {
+            left: 25%;
+            animation-delay: 0.5s;
+            font-size: 1rem;
+        }
+
+        .petal-3 {
+            left: 40%;
+            animation-delay: 1s;
+            font-size: 1.1rem;
+        }
+
+        .petal-4 {
+            left: 60%;
+            animation-delay: 1.5s;
+            font-size: 0.9rem;
+        }
+
+        .petal-5 {
+            left: 75%;
+            animation-delay: 2s;
+            font-size: 1.2rem;
+        }
+
+        .petal-6 {
+            left: 90%;
+            animation-delay: 2.5s;
+            font-size: 1rem;
+        }
+
+        @keyframes fallPetal {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(0deg);
+                top: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(calc(100vh + 100px)) rotate(360deg);
+                top: 100vh;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .loading-container {
+                padding: 40px 25px;
+                max-width: 90%;
+            }
+
+            .loading-title {
+                font-size: 1.5rem;
+            }
+
+            .heart {
+                font-size: 1.5rem;
+            }
+
+            .floating-flower {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Flowers Background -->
+    <div class="flower-background">
+        <div class="floating-flower flower-1">🌸</div>
+        <div class="floating-flower flower-2">🌹</div>
+        <div class="floating-flower flower-3">🌺</div>
+        <div class="floating-flower flower-4">🌷</div>
+        <div class="floating-flower flower-5">🌸</div>
+        <div class="floating-flower flower-6">🌹</div>
+        <div class="floating-flower flower-7">🌺</div>
+        <div class="floating-flower flower-8">🌷</div>
+    </div>
+
+    <!-- Falling Petals -->
+    <div class="floating-petals">
+        <div class="petal petal-1">🌸</div>
+        <div class="petal petal-2">🌹</div>
+        <div class="petal petal-3">🌺</div>
+        <div class="petal petal-4">🌷</div>
+        <div class="petal petal-5">🌸</div>
+        <div class="petal petal-6">🌹</div>
+    </div>
+
+    <!-- Loading Container -->
+    <div class="loading-container">
+        <div class="loading-title">✨ Birthday Surprise ✨</div>
+        <div class="loading-subtitle">Sedang mempersiapkan hadiah spesial...</div>
+
+        <!-- Animated Hearts -->
+        <div class="heart-loader">
+            <div class="heart heart-1">💕</div>
+            <div class="heart heart-2">🌹</div>
+            <div class="heart heart-3">💕</div>
+            <div class="heart heart-4">🌹</div>
+            <div class="heart heart-5">💕</div>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="progress-dots">
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
+        </div>
+
+        <!-- Loading Text -->
+        <div class="loading-text">
+            <span class="rotating-icon">🌸</span>
+            Loading
+            <span class="rotating-icon">🌸</span>
+        </div>
+    </div>
+
+    <script>
+        // Redirect ke halaman ucapan setelah loading selesai
+        window.addEventListener('load', () => {
+            // Tunggu 3 detik sebelum redirect untuk effect yang sempurna
+            setTimeout(() => {
+                window.location.href = 'ucapan.html';
+            }, 3000);
+        });
+
+        // Jika halaman sudah sepenuhnya load, langsung redirect
+        if (document.readyState === 'complete') {
+            setTimeout(() => {
+                window.location.href = 'ucapan.html';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
